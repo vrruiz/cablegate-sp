@@ -7,31 +7,25 @@
 ## 2010 Víctor R. Ruiz <rvr@linotipo.es>
 ## 
 
-##
-## Declarations
-##
+open CGATE, "< sp.csv";
+
 sub trim;
-
 my %count;
-my $cable_file = "kipr.csv";
-
-##
-## BEGIN
-##
-
-open CGATE, "< $cable_file";
 
 while (<CGATE>) {
 	$line = $_;
-   	($date,$source,$tags) = $line =~ m/^(.*),(.*),"(.*)"$/;
-	@tags = split ',', $tags;
-	foreach (@tags) {
-		$tag = trim($_);
-		if (length($tag) == 2) {
-			if ($count{$tag}) {
-				$count{$tag} = $count{$tag} + 1;
-			} else {
-				$count{$tag} = 1;
+	if ($line =~ m/[\"\s\,]+SP[\s\,\"]+/) {
+		# print $line;
+	   	($date,$source,$tags) = $line =~ m/^(.*),(.*),"(.*)"$/;
+		@tags = split ',', $tags;
+		foreach (@tags) {
+			$tag = trim($_);
+			if (length($tag) == 2) {
+				if ($count{$tag}) {
+					$count{$tag} = $count{$tag} + 1;
+				} else {
+					$count{$tag} = 1;
+				}
 			}
 		}
 	}
