@@ -37,7 +37,8 @@ my $delta_day = 0;
 while ($delta_day <= $delta_days) {
     my ($c_year, $c_month, $c_day) = Add_Delta_Days($cgate_ini_year,
 	$cgate_ini_month, $cgate_ini_day, $delta_day);
-    my $url = $URL_BASE."$c_year-$c_month-$c_day"."_0.html";
+    my $formatted_day = sprintf("%02d", $c_day);
+    my $url = $URL_BASE."$c_year-$c_month-$formatted_day"."_0.html";
     print $url."\n";
     download_listing_page($url); # cgate-html-downloader.pl
     $delta_day++;

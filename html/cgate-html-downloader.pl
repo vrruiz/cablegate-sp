@@ -72,7 +72,7 @@ sub download_listing_page {
     
     # Inside a pagination scan? Job done, return.
     return if ($loop);
-    print "$url - $loop";
+    print "$url - $loop\n";
 
     # Store pagination links
     my %pages;
