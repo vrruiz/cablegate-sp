@@ -103,5 +103,9 @@ sub download_listing_page {
 ##
 
 # Check URL. Needs a Cablegate listing page.
-my $url = $ARGV[0] or die "Usage: script.pl http://wikileaks.ch/cablegate/....";
-download_listing_page($url);
+if ($ARGV[0]) {
+    my $url = $ARGV[0] or die "Usage: script.pl http://wikileaks.ch/cablegate/....";
+    download_listing_page($url);
+} else {
+    return 1;
+}
