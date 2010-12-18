@@ -14,7 +14,7 @@ require "cgate-html-downloader.pl";
 ## Declarations
 ##
 
-my $URL_BASE = "http://213.251.145.96/reldate/";
+my $URL_BASE = "http://www.wikileaks.ch/reldate/";
 my $cgate_ini_year = 2010;
 my $cgate_ini_month = 11;
 my $cgate_ini_day = 28;
@@ -27,10 +27,11 @@ my $cgate_ini_day = 28;
 my ($second, $minute, $hour, $day_month, $month, $year_offset, $day_week,
     $day_year, $daylight_savings) = localtime();
 my $year = 1900 + $year_offset;
+$month++;
 
 # Get number of days between the first date of release and current date
-my $delta_days = Delta_Days($year, $month, $day_month,
-    $cgate_ini_year, $cgate_ini_month, $cgate_ini_day);
+my $delta_days = Delta_Days($cgate_ini_year, $cgate_ini_month, $cgate_ini_day,
+    $year, $month, $day_month);
 
 # Loop from initial release date to today
 my $delta_day = 0;
